@@ -1,3 +1,3 @@
-export class ClassificationRule {
+export class IClassificationRule {
   classifyTeams() {}
 }

@@ -1,4 +1,4 @@
-export class Phase {
+export class IPhase {
     start(teams) {}
     classify(teams) {}
     addMatchesToHistory(matches) {}
