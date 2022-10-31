@@ -175,15 +175,15 @@ class PostWinner extends React.Component {
       golsPenaltyTimeA: 0,
       golsPenaltyTimeB: 0
     }
-    // axios.post("/WorldCup/InsertFinalResult", data).then((response) => {
-    //     this.setState({
-    //         response: response.data,
-    //     });
-    // }).catch((error) => {
-    //     this.setState({
-    //         error: error,
-    //     });
-    // });
+    axios.post("/WorldCup/InsertFinalResult", data).then((response) => {
+        this.setState({
+            response: response.data,
+        });
+    }).catch((error) => {
+        this.setState({
+            error: error,
+        });
+    });
   }
 
   render() {
