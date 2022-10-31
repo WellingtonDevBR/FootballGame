@@ -53,7 +53,6 @@ export class App extends React.Component {
     if (!game) {
       this.setState({ isLoading: true });
     }
-
     return (
       <div>
         <Header />
@@ -61,6 +60,7 @@ export class App extends React.Component {
           isLoading ? <LoadingSpinner /> :
             <div className={styles.global}>
               <button onClick={() => this.startNewCupWorld()}>Novo Jogo</button>
+              {game !== null ? <PostWinner game={game} /> : null}
               <div className={styles.wrapper} >
                 <main className={styles.main}>
                   <div className={styles.teamOne}>
@@ -68,6 +68,47 @@ export class App extends React.Component {
                       {
                         game?.roundOfSixteenTeams?.slice(0, 4).map((teams, index) => {
                           return (<RoundOfSixteen key={index} teams={teams} group={classificationGroups[index]} />)
+                        })
+                      }
+                    </div>
+                    <div className={styles.roundOfEight}>
+                      {
+                        game?.classifiedsForRoundOfEight?.slice(0, 4).map((teams, index) => {
+                          return (<DefaultSquare key={index} teams={teams} />)
+                        })
+                      }
+                    </div>
+                    <div className={styles.quarterFinals}>
+                      {game?.classifiedsForQuarterFinals?.slice(0, 2).map((teams, index) => {
+                        return (<DefaultSquare key={index} teams={teams} />)
+                      })}
+                    </div>
+                    <div className={styles.semiFinals}>
+                      {game?.classifiedsForSemiFinals?.slice(1, 2).map((teams, index) => {
+                        return (<DefaultSquare key={index} teams={teams} />)
+                      })}
+                    </div>
+                  </div>
+                  <div className={styles.final}>
+                    {game?.classifiedsForFinals?.slice(0, 1).map((teams, index) => {
+                      return (<DefaultSquare key={index} teams={teams} />)
+                    })}
+                  </div>
+                  <div className={styles.teamTwo}>
+                    <div className={styles.semiFinals}>
+                      {game?.classifiedsForSemiFinals?.slice(0, 1).map((teams, index) => {
+                        return (<DefaultSquare key={index} teams={teams} />)
+                      })}
+                    </div>
+                    <div className={styles.quarterFinals}>
+                      {game?.classifiedsForQuarterFinals?.slice(2, 4).map((teams, index) => {
+                        return (<DefaultSquare key={index} teams={teams} />)
+                      })}
+                    </div>
+                    <div className={styles.roundOfEight}>
+                      {
+                        game?.classifiedsForRoundOfEight?.slice(4, 8).map((teams, index) => {
+                          return (<DefaultSquare key={index} teams={teams} />)
                         })
                       }
                     </div>
@@ -100,7 +141,7 @@ class PostWinner extends React.Component {
   }
 
   componentDidMount() {
-      const axios = new AxiosServices();
+      const axios = new Axios();
       const lastMatch = this.state.game.matchesHistory.pop();
       const data = {
           equipeA: lastMatch.teamAToken,
