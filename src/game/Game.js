@@ -1,5 +1,8 @@
 import { Round } from "./implementation/Round";
 import { Score } from "./implementation/Score";
+import { EntryPhase } from "./implementation/Phase";
+import { EntryPhaseMatchType } from "./implementation/MatchType";
+import { EntryPhaseClassificationRule } from "./implementation/ClassificationRule";
 
 export class Game {
   constructor(teams) {

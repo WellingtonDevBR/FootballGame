@@ -5,7 +5,8 @@ import { Axios } from './services/Axios';
 import { DefaultSquare } from './components/body/DefaultSquare';
 import { RoundOfSixteen } from './components/body/RoundOfSixteen';
 import { LoadingSpinner } from './components/body/LoadingSpinner';
-import './App.module.css';
+import styles from './App.module.css';
+import './Global.css';
 export class App extends React.Component {
   constructor() {
     super();
