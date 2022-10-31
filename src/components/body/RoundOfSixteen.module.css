@@ -1,0 +1,32 @@
+.roundOfSixteen {
+    width: 9.5rem;
+    height: 8.5rem;
+    background-color: #061547;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0 0 2rem; 
+}
+
+.roundOfSixteen h4 {
+    margin-top: 0.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.roundOfSixteen p:nth-child(-n + 2) {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-right: 0.5rem;
+}
+
+.roundOfSixteen p {
+    margin-top: 0.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 350;
+}

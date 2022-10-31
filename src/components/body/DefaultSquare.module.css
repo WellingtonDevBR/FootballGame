@@ -1,0 +1,23 @@
+.defaultSquare {
+    width: 6.875rem;
+    height: 6.125rem;
+    background: #061547;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0 0 2rem;
+}
+
+.defaultSquare h4 {
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 350;
+}
+
+
+.defaultSquare p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+}
