@@ -9,10 +9,13 @@ class PhaseResult {
 export class EntryPhase extends IPhase {
   constructor() {
     super();
+    this.matchesHistory = [];
   }
 
   start(groupsOfTeams) {
-
+    const matches = this.matchType.match(teams);
+    this.addMatchesToHistory(matches);
+    return matches;
   }
 
   classify(teams) {
@@ -20,7 +23,7 @@ export class EntryPhase extends IPhase {
   }
 
   addMatchesToHistory(matches) {
-
+    this.matchesHistory.push(...matches);
   }
 
   getMatchesResults() {
