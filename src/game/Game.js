@@ -61,11 +61,22 @@ export class Game {
     const quarterFinalsPhaseMatchesResults = quarterFinals.getMatchesResults();
     this.updateMatchesHistories(quarterFinalsPhaseMatchesResults);
 
+    // Semi Finals Phase Games
+    const semiFinals = new SemiFinalsPhase(
+      new NextPhaseMatchType(new Score()),
+      new NextPhaseClassificationRule()
+    );
+    const toBeClassifiedForFinals = semiFinals.start(classifiedsForSemiFinals);
+    const classifiedsForFinals = semiFinals.classify(toBeClassifiedForFinals);
+    const semiFinalsPhaseMatchesResults = semiFinals.getMatchesResults();
+    this.updateMatchesHistories(semiFinalsPhaseMatchesResults);
+
     return {
       roundOfSixteenTeams,
       classifiedsForRoundOfEight,
       classifiedsForQuarterFinals,
       classifiedsForSemiFinals,
+      classifiedsForFinals,
       matchesHistory: this.matchesHistory,
     };
   }
