@@ -176,3 +176,30 @@ export class SemiFinalsPhase extends IPhase {
     }, []);
   }
 }
+
+export class FinalPhase extends Phase {
+  constructor(matchType, classificationRule) {
+    super();
+    this.matchType = matchType;
+    this.classificationRule = classificationRule;
+    this.matchesHistory = [];
+  }
+
+  start(teams) {
+    const matches = this.matchType.match(teams);
+    this.addMatchesToHistory(matches);
+    return matches;
+  }
+
+  classify(teams) {
+    return this.classificationRule.classifyTeams(teams)[0];
+  }
+
+  addMatchesToHistory(matches) {
+    this.matchesHistory.push(...matches);
+  }
+
+  getMatchesResults() {
+    return new PhaseResult(this.matchesHistory);
+  }
+}
