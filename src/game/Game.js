@@ -1,9 +1,8 @@
 import { Round } from "./implementation/Round";
 import { Score } from "./implementation/Score";
-import { RoundOfSixteenPhase } from "./implementation/Phase";
-import { EntryPhaseMatchType } from "./implementation/MatchType";
-import { EntryPhaseClassificationRule } from "./implementation/ClassificationRule";
-
+import { RoundOfSixteenPhase, RoundOfEightPhase } from "./implementation/Phase";
+import { EntryPhaseMatchType, NextPhaseMatchType } from "./implementation/MatchType";
+import { EntryPhaseClassificationRule, NextPhaseClassificationRule } from "./implementation/ClassificationRule";
 export class Game {
   constructor(teams) {
     this.teams = teams;
@@ -13,6 +12,7 @@ export class Game {
 
   start() {
     if (!this.teams) return null;
+
     // Entry Phase Games
     const roundOfSixteenPhase = new RoundOfSixteenPhase(
       this.teams,
@@ -30,6 +30,21 @@ export class Game {
     );
     const entryPhaseMatchesResults = roundOfSixteenPhase.getMatchesResults();
     this.updateMatchesHistories(entryPhaseMatchesResults);
+
+    // Round of Eight Phase Games
+    const roundOfEightPhase = new RoundOfEightPhase(
+      new NextPhaseMatchType(new Score()),
+      new NextPhaseClassificationRule()
+    );
+    const toBeClassifiedForQuarterFinals = roundOfEightPhase.start(
+      classifiedsForRoundOfEight
+    );
+    const classifiedsForQuarterFinals = roundOfEightPhase.classify(
+      toBeClassifiedForQuarterFinals
+    );
+    const roundOfEightPhaseMatchesResults =
+      roundOfEightPhase.getMatchesResults();
+    this.updateMatchesHistories(roundOfEightPhaseMatchesResults);
 
     return {
       roundOfSixteenTeams,
