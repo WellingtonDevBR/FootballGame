@@ -3,11 +3,14 @@ import React from 'react';
 
 export function RoundOfSixteen(props) {
     return (
-        <div className={styles.roundOfSixteen}>
+        <div className={styles.finalSixteen}>
             <h5>
                 <p>GRUPO</p>
-                <p>A</p>
-                <p>Time</p>
+                <p>{props.group}</p>
+                {props?.teams?.map((player, index) => {
+                    return <p key={index}>{player.Name}</p>
+                })}
+
             </h5>
         </div>
 
