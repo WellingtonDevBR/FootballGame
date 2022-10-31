@@ -87,3 +87,44 @@ export class App extends React.Component {
     );
   }
 }
+
+
+class PostWinner extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+          game: props.game,
+          response: null,
+          error: null
+      };
+  }
+
+  componentDidMount() {
+      const axios = new AxiosServices();
+      const lastMatch = this.state.game.matchesHistory.pop();
+      const data = {
+          equipeA: lastMatch.teamAToken,
+          equipeB: lastMatch.teamBToken,
+          golsEquipeA: lastMatch.teamAGoals,
+          golsEquipeB: lastMatch.teamBGoals,
+          golsPenaltyTimeA: 0,
+          golsPenaltyTimeB: 0
+      }
+      // axios.post("/WorldCup/InsertFinalResult", data).then((response) => {
+      //     this.setState({
+      //         response: response.data,
+      //     });
+      // }).catch((error) => {
+      //     this.setState({
+      //         error: error,
+      //     });
+      // });
+  }
+
+  render() {
+      console.log(this.state.response)
+      return (
+          <></>
+      )
+  }
+}
