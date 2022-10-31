@@ -21,6 +21,7 @@ export class App extends React.Component {
   getWorldCupTeams() {
     const axios = new Axios();
     axios.get("/WorldCup/GetAllTeams").then((response) => {
+      console.log(response.data)
       this.setState({
         data: response.data,
         isLoading: false,

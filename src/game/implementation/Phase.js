@@ -6,23 +6,27 @@ class PhaseResult {
   }
 }
 
-export class RoundOfEightPhase extends IPhase {
-  constructor(matchType, classificationRule) {
+export class RoundOfSixteenPhase extends IPhase {
+  constructor(teams, matchType, classificationRule) {
     super();
+    this.teams = teams;
     this.matchType = matchType;
     this.classificationRule = classificationRule;
     this.matchesHistory = [];
   }
 
-  start(teams) {
-    const matches = this.matchType.match(teams);
+  start(groupsOfTeams) {
+    const matches = this.matchType.match(groupsOfTeams);
     this.addMatchesToHistory(matches);
     return matches;
   }
 
   classify(teams) {
-    const classifiedTeams = this.classificationRule.classifyTeams(teams);
-    return this.prepareTeamsForMatch(classifiedTeams);
+    const classifiedTeams = this.classificationRule.classifyTeams(
+      this.teams?.Result,
+      teams
+    );
+    return this.createGroups(classifiedTeams, 2);
   }
 
   addMatchesToHistory(matches) {
@@ -33,8 +37,11 @@ export class RoundOfEightPhase extends IPhase {
     return new PhaseResult(this.matchesHistory);
   }
 
-  prepareTeamsForMatch(teams) {
-    return this.createGroups(teams, 2);
+  prepareTeamsForMatches() {
+    const shuffledTeams = this.teams?.Result?.sort(
+      () => Math.random() - 0.5
+    );
+    return this.createGroups(shuffledTeams, 4);
   }
 
   createGroups(teams, teamsPerGroup) {

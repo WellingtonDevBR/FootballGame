@@ -10,10 +10,10 @@ export class Score {
     let scoreB = 0;
     if (teamGoalsA > teamGoalsB) {
       scoreA = this.scoreForWinner;
-      scoreB = scoreForLoser;
+      scoreB = this.scoreForLoser;
     } else if (teamGoalsA < teamGoalsB) {
       scoreB = this.scoreForWinner;
-      scoreA = scoreForLoser;
+      scoreA = this.scoreForLoser;
     } else {
       this.scoreA = this.scoreForDraw;
       this.scoreB = this.scoreForDraw;

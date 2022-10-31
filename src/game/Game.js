@@ -1,6 +1,6 @@
 import { Round } from "./implementation/Round";
 import { Score } from "./implementation/Score";
-import { EntryPhase } from "./implementation/Phase";
+import { RoundOfSixteenPhase } from "./implementation/Phase";
 import { EntryPhaseMatchType } from "./implementation/MatchType";
 import { EntryPhaseClassificationRule } from "./implementation/ClassificationRule";
 
@@ -14,7 +14,7 @@ export class Game {
   start() {
     if (!this.teams) return null;
     // Entry Phase Games
-    const roundOfSixteenPhase = new EntryPhase(
+    const roundOfSixteenPhase = new RoundOfSixteenPhase(
       this.teams,
       new EntryPhaseMatchType(
         new Round(this.entryPhaseRoundsRule),
@@ -38,7 +38,7 @@ export class Game {
     };
   }
 
-  updateMatchesHistories() {
+  updateMatchesHistories(phaseResult) {
     this.matchesHistory.push(...phaseResult.matches);
   }
 }
