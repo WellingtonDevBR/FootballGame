@@ -71,12 +71,23 @@ export class Game {
     const semiFinalsPhaseMatchesResults = semiFinals.getMatchesResults();
     this.updateMatchesHistories(semiFinalsPhaseMatchesResults);
 
+    // Finals Phase Games
+    const finals = new FinalPhase(
+      new NextPhaseMatchType(new Score()),
+      new NextPhaseClassificationRule()
+    );
+    const semiFinalTeamsMatch = finals.start(classifiedsForFinals);
+    finals.classify(semiFinalTeamsMatch);
+    const finalsPhaseMatchesResults = finals.getMatchesResults();
+    this.updateMatchesHistories(finalsPhaseMatchesResults);
+
     return {
       roundOfSixteenTeams,
       classifiedsForRoundOfEight,
       classifiedsForQuarterFinals,
       classifiedsForSemiFinals,
       classifiedsForFinals,
+      semiFinalTeamsMatch,
       matchesHistory: this.matchesHistory,
     };
   }
