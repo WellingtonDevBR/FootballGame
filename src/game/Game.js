@@ -1,8 +1,21 @@
 import { Round } from "./implementation/Round";
 import { Score } from "./implementation/Score";
-import { RoundOfSixteenPhase, RoundOfEightPhase } from "./implementation/Phase";
-import { EntryPhaseMatchType, NextPhaseMatchType } from "./implementation/MatchType";
-import { EntryPhaseClassificationRule, NextPhaseClassificationRule } from "./implementation/ClassificationRule";
+import {
+  EntryPhaseMatchType,
+  NextPhaseMatchType,
+} from "./implementation/MatchType";
+import {
+  EntryPhaseClassificationRule,
+  NextPhaseClassificationRule,
+} from "./implementation/ClassificationRule";
+import {
+  RoundOfSixteenPhase,
+  RoundOfEightPhase,
+  QuarterFinalsPhase,
+  SemiFinalsPhase,
+  FinalPhase,
+} from "./implementation/Phase";
+
 export class Game {
   constructor(teams) {
     this.teams = teams;
@@ -45,7 +58,6 @@ export class Game {
     const roundOfEightPhaseMatchesResults =
       roundOfEightPhase.getMatchesResults();
     this.updateMatchesHistories(roundOfEightPhaseMatchesResults);
-
 
     // Round of Four Phase Games
     const quarterFinals = new QuarterFinalsPhase(

@@ -177,7 +177,7 @@ export class SemiFinalsPhase extends IPhase {
   }
 }
 
-export class FinalPhase extends Phase {
+export class FinalPhase extends IPhase {
   constructor(matchType, classificationRule) {
     super();
     this.matchType = matchType;
