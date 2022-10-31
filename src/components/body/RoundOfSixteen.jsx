@@ -1,7 +1,7 @@
 import styles from './RoundOfSixteen.module.css';
 import React from 'react';
 
-export function FinalSixteen(props) {
+export function RoundOfSixteen(props) {
     return (
         <div className={styles.roundOfSixteen}>
             <h5>

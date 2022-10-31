@@ -9,6 +9,7 @@ export class Game {
   }
 
   start() {
+    if (!this.teams) return null;
     // Entry Phase Games
     const roundOfSixteenPhase = new EntryPhase(
       this.teams,
