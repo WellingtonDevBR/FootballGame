@@ -4,7 +4,9 @@ export function DefaultSquare(props) {
     return (
         <div className={styles.defaultSquare}>
             <h4>
-                <p>Test</p>
+                {props.teams.map((team, index) => {
+                    return <p key={index}>{team.Group + ". " + team.Name}</p>
+                })}
             </h4>
         </div>
 
