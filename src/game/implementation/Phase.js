@@ -1,4 +1,4 @@
-import { Phase } from "../interfaces/IPhase";
+import { IPhase } from "../interfaces/IPhase";
 
 class PhaseResult {
   constructor(matches) {
@@ -6,7 +6,7 @@ class PhaseResult {
   }
 }
 
-export class EntryPhase extends Phase {
+export class EntryPhase extends IPhase {
   constructor() {
     super();
   }

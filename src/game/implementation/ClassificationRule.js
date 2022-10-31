@@ -1,6 +1,6 @@
-import { ClassificationRule } from "../interfaces/IClassificationRule";
+import { IClassificationRule } from "../interfaces/IClassificationRule";
 
-export class EntryPhaseClassificationRule extends ClassificationRule {
+export class EntryPhaseClassificationRule extends IClassificationRule {
   constructor() {
     super();
   }

@@ -1,6 +1,6 @@
-import { MatchType } from "../interfaces/IMatchType";
+import { IMatchType } from "../interfaces/IMatchType";
 
-export class EntryPhaseMatchType extends MatchType {
+export class EntryPhaseMatchType extends IMatchType {
   constructor(round, score) {
     super();
   }
