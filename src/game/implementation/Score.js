@@ -3,25 +3,25 @@ export class Score {
     this.scoreForWinner = 3;
     this.scoreForLoser = 0;
     this.scoreForDraw = 1;
-    this.scoreA = 0;
-    this.scoreB = 0;
   }
 
   calculate(teamGoalsA, teamGoalsB) {
+    let scoreA = 0;
+    let scoreB = 0;
     if (teamGoalsA > teamGoalsB) {
-      this.scoreA = this.scoreForWinner;
-      this.scoreB = scoreForLoser;
+      scoreA = this.scoreForWinner;
+      scoreB = scoreForLoser;
     } else if (teamGoalsA < teamGoalsB) {
-      this.scoreB = this.scoreForWinner;
-      this.scoreA = scoreForLoser;
+      scoreB = this.scoreForWinner;
+      scoreA = scoreForLoser;
     } else {
       this.scoreA = this.scoreForDraw;
       this.scoreB = this.scoreForDraw;
     }
 
     return {
-      scoreA: this.scoreA,
-      scoreB: this.scoreB,
+      scoreA,
+      scoreB,
       teamGoalsA,
       teamGoalsB,
     };
