@@ -46,9 +46,26 @@ export class Game {
       roundOfEightPhase.getMatchesResults();
     this.updateMatchesHistories(roundOfEightPhaseMatchesResults);
 
+
+    // Round of Four Phase Games
+    const quarterFinals = new QuarterFinalsPhase(
+      new NextPhaseMatchType(new Score()),
+      new NextPhaseClassificationRule()
+    );
+    const toBeClassifiedForSemiFinals = quarterFinals.start(
+      classifiedsForQuarterFinals
+    );
+    const classifiedsForSemiFinals = quarterFinals.classify(
+      toBeClassifiedForSemiFinals
+    );
+    const quarterFinalsPhaseMatchesResults = quarterFinals.getMatchesResults();
+    this.updateMatchesHistories(quarterFinalsPhaseMatchesResults);
+
     return {
       roundOfSixteenTeams,
       classifiedsForRoundOfEight,
+      classifiedsForQuarterFinals,
+      classifiedsForSemiFinals,
       matchesHistory: this.matchesHistory,
     };
   }

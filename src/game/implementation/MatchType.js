@@ -58,7 +58,7 @@ export class EntryPhaseMatchType extends IMatchType {
   }
 }
 
-export class NextPhaseMatchType extends MatchType {
+export class NextPhaseMatchType extends IMatchType {
   constructor(score) {
     super();
     this.score = score;

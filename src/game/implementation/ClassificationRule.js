@@ -1,6 +1,6 @@
 import { IClassificationRule } from "../interfaces/IClassificationRule";
 
-export class EntryPhaseClassificationRule extends ClassificationRule {
+export class EntryPhaseClassificationRule extends IClassificationRule {
   constructor() {
     super();
     this.groupsOfClassification = ["A", "B", "C", "D", "E", "F", "G", "H"];
@@ -76,7 +76,7 @@ export class EntryPhaseClassificationRule extends ClassificationRule {
   }
 }
 
-export class NextPhaseClassificationRule extends ClassificationRule {
+export class NextPhaseClassificationRule extends IClassificationRule {
   constructor() {
     super();
   }
