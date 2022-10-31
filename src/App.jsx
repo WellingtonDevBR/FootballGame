@@ -123,6 +123,30 @@ export class App extends React.Component {
                   )
                 </main>
               </div>
+              <div className={styles.app}>
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>Rodadas</th>
+                      <th>Duelo</th>
+                      <th>Goals</th>
+                      <th>Vencedor</th>
+                    </tr>
+                    {
+                      game?.matchesHistory?.map((team, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{team.teamA + " x " + team.teamB}</td>
+                            <td>{team.teamAGoals + " x " + team.teamBGoals}</td>
+                            <td>{team.teamAGoals > team.teamBGoals ? team.teamA : team.teamB}</td>
+                          </tr>
+                        )
+                      })
+                    }
+                  </tbody>
+                </table>
+              </div>
             </div>}
       </div>
     );
@@ -132,40 +156,40 @@ export class App extends React.Component {
 
 class PostWinner extends React.Component {
   constructor(props) {
-      super(props);
-      this.state = {
-          game: props.game,
-          response: null,
-          error: null
-      };
+    super(props);
+    this.state = {
+      game: props.game,
+      response: null,
+      error: null
+    };
   }
 
   componentDidMount() {
-      const axios = new Axios();
-      const lastMatch = this.state.game.matchesHistory.pop();
-      const data = {
-          equipeA: lastMatch.teamAToken,
-          equipeB: lastMatch.teamBToken,
-          golsEquipeA: lastMatch.teamAGoals,
-          golsEquipeB: lastMatch.teamBGoals,
-          golsPenaltyTimeA: 0,
-          golsPenaltyTimeB: 0
-      }
-      // axios.post("/WorldCup/InsertFinalResult", data).then((response) => {
-      //     this.setState({
-      //         response: response.data,
-      //     });
-      // }).catch((error) => {
-      //     this.setState({
-      //         error: error,
-      //     });
-      // });
+    const axios = new Axios();
+    const lastMatch = this.state.game.matchesHistory.pop();
+    const data = {
+      equipeA: lastMatch.teamAToken,
+      equipeB: lastMatch.teamBToken,
+      golsEquipeA: lastMatch.teamAGoals,
+      golsEquipeB: lastMatch.teamBGoals,
+      golsPenaltyTimeA: 0,
+      golsPenaltyTimeB: 0
+    }
+    // axios.post("/WorldCup/InsertFinalResult", data).then((response) => {
+    //     this.setState({
+    //         response: response.data,
+    //     });
+    // }).catch((error) => {
+    //     this.setState({
+    //         error: error,
+    //     });
+    // });
   }
 
   render() {
-      console.log(this.state.response)
-      return (
-          <></>
-      )
+    console.log(this.state.response)
+    return (
+      <></>
+    )
   }
 }
