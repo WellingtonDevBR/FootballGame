@@ -49,4 +49,29 @@ export class EntryPhaseClassificationRule extends ClassificationRule {
     return newclassifiedsForQuarterFinalsArray;
   }
 
+  sumUpTeamScores(teams, matches) {
+    let counter = 0;
+    teams.map((team, index) => {
+      index = index + 1;
+      const getAllTeamMatchs = matches.filter(
+        (match) => match.teamA === team.Name || match.teamB === team.Name
+      );
+      const sum = getAllTeamMatchs.reduce((acc, object) => {
+        if (object.teamA === team.Name) {
+          acc = acc + object.teamAScore;
+        }
+        if (object.teamB === team.Name) {
+          acc = acc + object.teamBScore;
+        }
+        return acc;
+      }, 0);
+      this.teamWithScoresCalculated.push({
+        Name: team.Name,
+        Score: sum,
+        Token: team.Token,
+        Group: this.groupsOfClassification[counter],
+      });
+      index % 4 == 0 ? counter++ : (counter = counter);
+    });
+  }
 }
