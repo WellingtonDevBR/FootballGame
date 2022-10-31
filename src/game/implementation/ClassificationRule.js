@@ -75,3 +75,60 @@ export class EntryPhaseClassificationRule extends ClassificationRule {
     });
   }
 }
+
+export class NextPhaseClassificationRule extends ClassificationRule {
+  constructor() {
+    super();
+  }
+
+  classifyTeams(matches) {
+    let isClassifiable = false;
+    let classifiedsForQuarterFinals = [];
+    matches.forEach((match) => {
+      if (match.teamAScore > match.teamBScore) {
+        classifiedsForQuarterFinals.push({
+          Name: match.teamA,
+          Score: match.teamAScore,
+          Token: match.teamAToken,
+          Goals: match.teamAGoals,
+          Group: match.teamAGroup,
+        });
+      } else if (match.teamAScore < match.teamBScore) {
+        classifiedsForQuarterFinals.push({
+          Name: match.teamB,
+          Score: match.teamBScore,
+          Token: match.teamBToken,
+          Goals: match.teamBGoals,
+          Group: match.teamBGroup,
+        });
+      } else if (match.teamAScore == match.teamBScore) {
+        if (match.teamAGoals > match.teamBGoals) {
+          classifiedsForQuarterFinals.push({
+            Name: match.teamA,
+            Score: match.teamAScore,
+            Token: match.teamAToken,
+            Goals: match.teamAGoals,
+            Group: match.teamAGroup,
+          });
+        } else if (match.teamAGoals < match.teamBGoals) {
+          classifiedsForQuarterFinals.push({
+            Name: match.teamB,
+            Score: match.teamBScore,
+            Token: match.teamBToken,
+            Goals: match.teamBGoals,
+            Group: match.teamBGroup,
+          });
+        } else if (match.teamAGoals == match.teamBGoals) {
+          classifiedsForQuarterFinals.push({
+            Name: match.teamA,
+            Score: match.teamAScore,
+            Token: match.teamAToken,
+            Goals: match.teamAGoals,
+            Group: match.teamAGroup,
+          });
+        }
+      }
+    });
+    return classifiedsForQuarterFinals;
+  }
+}
