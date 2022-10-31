@@ -1,6 +1,7 @@
 import React from 'react';
 import { Game } from './game/Game';
 import { Header } from './components/header/Header';
+import { Axios } from './services/Axios';
 import { DefaultSquare } from './components/body/DefaultSquare';
 import { RoundOfSixteen } from './components/body/RoundOfSixteen';
 import { LoadingSpinner } from './components/body/LoadingSpinner';
@@ -16,12 +17,42 @@ export class App extends React.Component {
     };
   }
 
+  getWorldCupTeams() {
+    const axios = new Axios();
+    axios.get("/WorldCup/GetAllTeams").then((response) => {
+      this.setState({
+        data: response.data,
+        isLoading: false,
+      });
+    }).catch((error) => {
+      this.setState({
+        error: error,
+      });
+    });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.data !== null && this.state.data == nextState.data) {
+      return false;
+    }
+    return true;
+  }
+
+  componentDidMount() {
+    this.getWorldCupTeams();
+  }
+
+  startNewCupWorld() {
+    this.getWorldCupTeams();
+  }
+
   render() {
     const { data, classificationGroups, isLoading } = this.state;
     let game = new Game(data).start();
     if (!game) {
       this.setState({ isLoading: true });
     }
+
     return (
       <div>
         <Header />

@@ -2,7 +2,7 @@ import { Round } from "./implementation/Round";
 import { Score } from "./implementation/Score";
 
 export class Game {
-  constructor() {
+  constructor(teams) {
     this.teams = teams;
     this.matchesHistory = [];
     this.entryPhaseRoundsRule = 3;
