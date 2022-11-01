@@ -187,7 +187,6 @@ class PostWinner extends React.Component {
   }
 
   render() {
-    console.log(this.state.response)
     return (
       <></>
     )
